@@ -1,0 +1,32 @@
+<h1>TODO List</h1>
+
+Name:
+<input type="text" [(ngModel)]="username" (keyup)="sortUsername($event)">
+<button (click)="showUndone()">Show undone</button>
+<br><br>
+<h3>New item</h3>
+Description:
+<input type="text" [(ngModel)]="newDescription"><br>
+AssignedTo:
+<select>
+  <option *ngFor="let entry of people | async">{{entry.name}}</option>
+</select>
+<br>
+<button (click)="createItem()">Create Item</button>
+
+<table>
+  <tr *ngFor="let item of sortedItems">
+    <td>
+      {{item.description}}
+    </td>
+    <td>
+      {{item.assignedTo}}
+    </td>
+    <td>
+      {{item.done}}
+    </td>
+    <td>
+      <button (click)="removeItem({{item.id}})">Delete</button>
+    </td>
+  </tr>
+</table>
